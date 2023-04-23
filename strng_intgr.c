@@ -72,5 +72,4 @@ int _atoi(char *b)
 		output = z;
 	return (z);
 }
-
-
+/* a NIYIBIZI Bonaventur codes */
