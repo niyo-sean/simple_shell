@@ -9,7 +9,7 @@ char **get_environ(info_t *info)
 	if (!info->environ || info->env_changed)
 	{
 		info->environ = list_to_strings(info->env);
-		fo->env_changed = 0;
+		info->env_changed = 0;
 	}
 	return (info->environ);
 }
@@ -51,7 +51,7 @@ int _unsetenv(info_t *info, char *y)
  */
 int _setenv(info_t *info, char *y, char *z)
 {
-	char *buff = NULL;
+	char *buffer = NULL;
 	list_t *node;
 	char *c;
 
@@ -66,7 +66,7 @@ int _setenv(info_t *info, char *y, char *z)
 	node = info->env;
 	while (node)
 	{
-		c = strats_with(node->str, y);
+		c = starts_with(node->str, y);
 		if (c && *c == '=')
 		{
 			free(node->str);
@@ -76,7 +76,7 @@ int _setenv(info_t *info, char *y, char *z)
 		}
 		node = node->next;
 	}
-	add_node_end(&(info->env). buffer, 0);
+	add_node_end(&(info->env), buffer, 0);
 	free(buffer);
 	info->env_changed = 1;
 	return (0);

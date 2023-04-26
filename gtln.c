@@ -1,4 +1,4 @@
-#include "myshell"
+#include "myshell.h"
 /**
  * input_buf - buffers for list of command
  * @buffer :adress of buffer
@@ -29,10 +29,10 @@ ssize_t input_buf(info_t *info, char **buffer, size_t *leng)
 			}
 			info->linecount_flag = 1;
 			remove_comments(*buffer);
-			build_history_lists(info, *buffer, info->histcount++);
+			build_history_list(info, *buffer, info->histcount++);
 			{
 				*leng = x;
-				info->cmd_buffer = buffer;
+				info->cmd_buf = buffer;
 			}
 		}
 	}
@@ -59,7 +59,7 @@ ssize_t get_input(info_t *info)
 		b = a;
 		c = buffer + a;
 
-		chexk_chain(info, buffer, &b, a, leng);
+		check_chain(info, buffer, &b, a, leng);
 		while (b < leng)
 		{
 			if (is_chain(info, buffer, &b))
@@ -67,15 +67,15 @@ ssize_t get_input(info_t *info)
 			b++;
 		}
 		a = b + 1;
-		if (i >= len)
+		if (a >= leng)
 		{
 			a = leng = 0;
-			info->cmd_buffer_type = CMD_NORM;
+			info->cmd_buf_type = CMD_NORM;
 		}
 		*buffer_c = c;
 		return (_strlen(c));
 	}
-	*buff_c = buffer;
+	*buffer_c = buffer;
 	return (x);
 }
 /**
@@ -105,21 +105,21 @@ ssize_t  read_buf(info_t *info, char *buffer, size_t *a)
  */
 int _getline(info_t *info, char **pt, size_t *leng)
 {
-	static char buffer[REA_BUFFER_SIZE];
+	static char buffer[READ_BUFFER_SIZE];
 	static size_t a, d;
 	size_t q;
 	ssize_t x = 0, c = 0;
 	char *f = NULL, *new_f = NULL, *b;
 
-	*f = *pt;
+	f = *pt;
 	if (f && leng)
 		c = *leng;
 	if (a == d)
 		a = d = 0;
-	x = read_buffer(info, buffer, &d);
+	x = read_buf(info, buffer, &d);
 	if (x == -1 || (x == 0 && d == 0))
 		return (-1);
-	b = _strchr(buffer + a, '\n');
+	b = _strchar(buffer + a, '\n');
 	q = b ? 1 + (unsigned int)(b - buffer) : d;
 	new_f = _realloc(f, c, c ? c + q : q + 1);
 	if (!new_f)
@@ -145,5 +145,5 @@ void sigintHandler(__attribute__((unused))int sig_n)
 {
 	_puts("\n");
 	_puts("$");
-	_putchar(BUFF_FLUSH);
+	_putchar(BUFFER_FLUSH);
 }

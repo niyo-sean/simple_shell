@@ -1,4 +1,4 @@
-Rrnclude "myshell.h"
+#include "myshell.h"
 /**
  * strtow -splits string into to words
  * @str: is the input string
@@ -60,7 +60,7 @@ char **strtow2(char *str, char del)
 	for (a = 0; str[a] != '\0'; a++)
 	{
 		if ((str[a] != del && str[a + 1] == del) ||
-				(str[a] != del && !str[i + 1]) || str[a + 1] == del)
+				(str[a] != del && !str[a + 1]) || str[a + 1] == del)
 			nwords++;
 	}
 	if (nwords == 0)
@@ -78,7 +78,7 @@ char **strtow2(char *str, char del)
 		h[b] = malloc((c + 1) * sizeof(char));
 		if (!h[b])
 		{
-			for (c = 0; c < b; k++)
+			for (c = 0; c < b; c++)
 				free(h[c]);
 			free(h);
 			return (NULL);

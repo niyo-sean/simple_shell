@@ -48,7 +48,7 @@ int _isalpha(int c)
  */
 int _atoi(char *b)
 {
-	int i, x = 1, y = 0. output;
+	int i, x = 1, y = 0, output;
 	unsigned int z = 0;
 
 	for (i = 0; b[i] != '\0' && y != 2; i++)
@@ -70,6 +70,6 @@ int _atoi(char *b)
 		output = -z;
 	else
 		output = z;
-	return (z);
+	return (output);
 }
 /* a NIYIBIZI Bonaventur codes */

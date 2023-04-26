@@ -4,13 +4,13 @@
 /* all libreries will be needed */
 #include <stdio.h>
 #include<stdlib.h>
-#include<unstd.h>
+#include<unistd.h>
 #include<string.h>
 #include<sys/types.h>
 #include<sys/wait.h>
 #include<sys/stat.h>
 #include<limits.h>
-#include<fcnt1.h>
+#include <fcntl.h>
 #include<errno.h>
 
 /*here define read/write for buffers */
@@ -83,7 +83,7 @@ typedef struct passinfo
 	list_t *env;
 	list_t *history;
 	list_t *alias;
-	list_t *history;
+/*	list_t *history;*/
 	char **environ;
 	int env_changed;
 	int status;
@@ -108,6 +108,7 @@ typedef struct builtin
 } builtin_table;
 
 /* declare for_exit.c */
+int _putchar(char c);
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchar(char *, char);
@@ -128,8 +129,8 @@ int lphsh(char **);
 
 /* declare for_error.c */
 void _puts(char *);
-void _putchar(char);
-void _putfd(char c, int fd);
+/*void _putchar(char);*/
+int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
 /*declare for_strng.c */
@@ -142,7 +143,7 @@ char *_strcat(char *, char *);
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
-int _putchar(char);
+/*int _putchar(char);*/
 
 /*declare for_token */
 char **strtow(char *, char *);
@@ -184,7 +185,7 @@ int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
 
 /*declare for_gtnf.c */
-void clear_info(info_t * const char *);
+/*void clear_info(info_t *, const char *);*/
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
 

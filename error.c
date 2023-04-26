@@ -1,4 +1,4 @@
-#include "myshell"
+#include "myshell.h"
 /**
  * _puts - prints an inputs stringsfrom keyboard
  * @strg: the string being printed
@@ -13,7 +13,7 @@ void _puts(char *strg)
 		return;
 	while (strg[a] != '\0')
 	{
-		_putchar(str[a]);
+		_putchar(strg[a]);
 		a++;
 	}
 }
@@ -49,7 +49,7 @@ int _putfd(char h, int fd)
 
 	if (h == BUFFER_FLUSH || a >= WRITE_BUFFER_SIZE)
 	{
-		write(fs, buffer, a);
+		write(fd, buffer, a);
 		a = 0;
 	}
 	if (h != BUFFER_FLUSH)
@@ -71,7 +71,7 @@ int _putsfd(char *strg, int fd)
 		return (0);
 	while (*strg)
 	{
-		a += +putfd(*strg++, fd);
+		a += _putfd(*strg++, fd);
 	}
 	return (a);
 }

@@ -19,7 +19,7 @@ int _myexit(info_t *info)
 			_putchar('\n');
 			return (1);
 		}
-		info->err_num = _errotoi(info->argv[1]);
+		info->err_num = _erratoi(info->argv[1]);
 		return (-2);
 	}
 	info->err_num = -1;
@@ -50,7 +50,7 @@ int _mycd(info_t *info)
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
-			_puts(x);
+			_puts(b);
 			_putchar('\n');
 			return (1);
 		}
@@ -76,7 +76,7 @@ int _mycd(info_t *info)
  * @info: this is for potential args and funscs prototypes
  * Return: success
  */
-int _myhelp(ino_t *inf)
+int _myhelp(info_t *info)
 {
 	char **z;
 

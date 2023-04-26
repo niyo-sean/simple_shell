@@ -68,7 +68,7 @@ int _myunsetenv(info_t *info)
 	}
 	for (i = 1; i <= info->argc; i++)
 	{
-		_unswtenv(info, info->argv[i]);
+		_unsetenv(info, info->argv[i]);
 	}
 	return (0);
 }

@@ -1,4 +1,4 @@
-#include "myshell"
+#include "myshell.h"
 /**
  * get_history_file - gets the history file
  * @info: parameter struct
@@ -47,7 +47,7 @@ int write_history(info_t *info)
 		_putsfd(node->str, fd);
 		_putfd('\n', fd);
 	}
-	_putfd(BUF_FLUSH, fd);
+	_putfd(BUFFER_FLUSH, fd);
 	close(fd);
 	return (1);
 }
@@ -135,7 +135,7 @@ int renumber_history(info_t *info)
 
 	while (node)
 	{
-		node->num = i++;
+		node->n = i++;
 		node = node->next;
 	}
 	return (info->histcount = i);

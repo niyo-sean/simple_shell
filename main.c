@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 	info_t info[] = { INFO_INIT };
 	int fd = 2;
 
-	asm ("mov %1. %0\n\t"
+	asm ("mov %1, %0\n\t"
 			"add $3, %0"
 			: "=r" (fd)
 			: "r" (fd));
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 			{
 				_puts(argv[0]);
 				_puts(": ): can't open");
-				_puts(agrv[1]);
+				_puts(argv[1]);
 				putchar('\n');
 				putchar(BUFFER_FLUSH);
 				exit(127);
@@ -37,8 +37,8 @@ int main(int argc, char **argv)
 		info->readfd = fd;
 	}
 	populate_env_list(info);
-	read_history(info);
+	readd_history(info);
 	hsh(info, argv);
-	return (EXIT_SUCCUSS);
+	return (EXIT_SUCCESS);
 }
 /* a NIYIBIZI Bonaventure codes */

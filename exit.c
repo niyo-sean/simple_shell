@@ -20,7 +20,7 @@ char *_strncpy(char *dest, char *src, int w)
 	if (i < w)
 	{
 		m = 1;
-		while (m < n)
+		while (m < w)
 		{
 			dest[m] = '\0';
 			m++;
@@ -40,17 +40,17 @@ char *_strncat(char *dest, char *src, int w)
 	int i, m;
 	char *z = dest;
 
-	i - 0;
+	i = 0;
 	m = 0;
 	while (dest[i] != '\0')
 		i++;
-	while (src[m] != '\0' && m < n)
+	while (src[m] != '\0' && m < w)
 	{
 		dest[i] = src[m];
 		i++;
 		m++;
 	}
-	if (m < n)
+	if (m < w)
 		dest[i] = '\0';
 	return (z);
 }

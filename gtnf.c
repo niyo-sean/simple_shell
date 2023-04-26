@@ -1,4 +1,4 @@
-#include "myshell"
+#include "myshell.h"
 /**
  * clear_info - to initializes info struct
  * @info: is the parameter of struct ad
@@ -55,7 +55,7 @@ void free_info(info_t *info, int y)
 	info->path = NULL;
 	if (y)
 	{
-		if (!info->cmd_buffer)
+		if (!info->cmd_buf)
 			free(info->arg);
 		if (info->env)
 			free_list(&(info->env));
@@ -65,7 +65,7 @@ void free_info(info_t *info, int y)
 			free_list(&(info->alias));
 		ffree(info->environ);
 			info->environ = NULL;
-		bfree((void **)info->cmd_buffer);
+		bfree((void **)info->cmd_buf);
 		if (info->readfd > 2)
 			close(info->readfd);
 		_putchar(BUFFER_FLUSH);

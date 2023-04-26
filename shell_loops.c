@@ -12,7 +12,7 @@ int hsh(info_t *info, char **v)
 
 	while (x != -1 && builtin_ret != -2)
 	{
-		clear_info(info);
+		/*clear_info(info);*/
 		if (interactive(info))
 			_puts("$ ");
 		_putchar(BUFFER_FLUSH);
@@ -34,7 +34,7 @@ int hsh(info_t *info, char **v)
 		exit(info->status);
 	if (builtin_ret == -2)
 	{
-		if (jnfo->err_num == -1)
+		if (info->err_num == -1)
 			exit(info->status);
 		exit(info->err_num);
 	}
@@ -52,12 +52,12 @@ int find_builtin(info_t *info)
 		{"exit", _myexit},
 		{"env", _myenv},
 		{"help", _myhelp},
-		{"history", _myhistory},
-		{"setenv", -mysetenv},
+		{"history", _myhstry},
+		{"setenv", _mysetenv},
 		{"unsetenv", _mysetenv},
 		{"cd", _mycd},
 		{"alias", _myalias},
-		{NULL. NULL}
+		{NULL, NULL}
 	};
 
 	for (a = 0; builtintbl[a].type; a++)
@@ -87,7 +87,7 @@ void find_cmd(info_t *info)
 		info->linecount_flag = 0;
 	}
 	for (a = 0, d = 0; info->arg[a]; a++)
-		if (!is_delim(info->srg[a], "\t\n"))
+		if (!is_delim(info->arg[a], "\t\n"))
 			d++;
 	if (!d)
 		return;
@@ -123,11 +123,11 @@ void fork_cmd(info_t *info)
 	if (chld == -1)
 	{
 		perror("error:");
-		return (-1);
+		return;
 	}
 	if (chld == 0)
 	{
-		if (execve(info->path, info->argv, get_environ(info)) == -1)
+		if (execve(info->path, info->argv, get_envirin(info)) == -1)
 		{
 			free_info(info, 1);
 			if (errno == EACCES)

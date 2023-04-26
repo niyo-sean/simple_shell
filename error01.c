@@ -1,4 +1,4 @@
-#include "myshell"
+#include "myshell.h"
 /**
  * _erratoi -convers a string to an interger
  * @h: the atring to be converted
@@ -17,7 +17,7 @@ int _erratoi(char *h)
 		{
 			result *= 10;
 			result += (h[a] - '0');
-			if (reslt > INT_MAX)
+			if (result > INT_MAX)
 				return (-1);
 		}
 		else
@@ -35,7 +35,7 @@ void print_error(info_t *info, char *se)
 {
 	_puts(info->fname);
 	_puts(": ");
-	print_dc(info->line_count, STDERR_FILENO);
+	print_d(info->line_count, STDERR_FILENO);
 	_puts(": ");
 	_puts(info->argv[0]);
 	_puts(": ");
@@ -54,7 +54,7 @@ int print_dc(int input, int fd)
 	unsigned int _abc_, current;
 
 	if (fd == STDERR_FILENO)
-		__putchar = _Putchar;
+		__putchar = _putchar;
 	if (input < 0)
 	{
 		_abc_ = -input;
@@ -119,7 +119,7 @@ void remove_comments(char *buffer)
 {
 	int a;
 
-	for (a = 0; buffer[i] != '\0'; a++)
+	for (a = 0; buffer[a] != '\0'; a++)
 		if (buffer[a] == '#' && (!a || buffer[a - 1] == ' '))
 		{
 			buffer[a] = '\0';

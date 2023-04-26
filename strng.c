@@ -43,7 +43,7 @@ int _strcmp(char *g1, char *g2)
 char *starts_with(const char *haystack, const char *needle)
 {
 	while (*needle)
-		if (*needlr++ != *haystack++)
+		if (*needle++ != *haystack++)
 			return (NULL);
 	return ((char *)haystack);
 }
@@ -55,12 +55,12 @@ char *starts_with(const char *haystack, const char *needle)
  */
 char *_strcat(char *desbuf, char *srbuf)
 {
-	char *h = destbuf;
+	char *h = desbuf;
 
 	while (*desbuf)
 		desbuf++;
 	while (*srbuf)
 		*desbuf++ = *srbuf++;
-	*debuf = *srbuf;
+	*desbuf = *srbuf;
 	return (h);
 }

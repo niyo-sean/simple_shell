@@ -1,4 +1,4 @@
-#include "myshell"
+#include "myshell.h"
 /**
  * is_chain - test if current char in buffer is a chain delimeter
  * @info: the parameter struct
@@ -86,7 +86,7 @@ int replace_alias(info_t *info)
 		if (!node)
 			return (0);
 		free(info->argv[0]);
-		p = _strchr(node->str, '=');
+		p = _strchar(node->str, '=');
 		if (!p)
 			return (0);
 		p = _strdup(p + 1);
@@ -129,7 +129,7 @@ int replace_vars(info_t *info)
 		if (node)
 		{
 			replace_string(&(info->argv[i]),
-				_strdup(_strchr(node->str, '=') + 1));
+				_strdup(_strchar(node->str, '=') + 1));
 			continue;
 		}
 		replace_string(&info->argv[i], _strdup(""));

@@ -13,7 +13,7 @@ int is_cmd(info_t *info, char *path)
 	(void)info;
 	if (!path || stat(path, &g))
 		return (0);
-	if (g.g_mode & S_IFREG)
+	if (g.st_mode & S_IFREG)
 	{
 		return (1);
 	}

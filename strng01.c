@@ -9,7 +9,7 @@ char *_strcpy(char *desbuf, char *srbuf)
 {
 	int a = 0;
 
-	if (desbuf == srbuf || srbuff == 0)
+	if (desbuf == srbuf || srbuf == 0)
 		return (desbuf);
 	while (srbuf[a])
 	{
@@ -29,14 +29,14 @@ char *_strdup(const char *str)
 	int len = 0;
 	char *ret;
 
-	if 9str == NULL0
+	if (str == NULL)
 		return (NULL);
 	while (*str++)
 		len++;
 	ret = malloc(sizeof(char) * (len + 1));
 	if (!ret)
 		return (NULL);
-	for (len++; leng--;)
+	for (len++; len--;)
 		ret[len] = *--str;
 	return (ret);
 }
@@ -53,7 +53,7 @@ void _puts(char *str)
 		return;
 	while (str[a] != '\0')
 	{
-		-putchar(str[a]);
+		_putchar(str[a]);
 		a++;
 	}
 }
@@ -65,9 +65,9 @@ void _puts(char *str)
 int _putchar(char h)
 {
 	static int a;
-	static char buff[WRITE_BUFFER_SIZE];
+	static char buffer[WRITE_BUFFER_SIZE];
 
-	if (h == NUFFER_FLUSH || a >= WRITE_BUFFER_SIZE)
+	if (h == BUFFER_FLUSH || a >= WRITE_BUFFER_SIZE)
 	{
 		write(1, buffer, a);
 		a = 0;
