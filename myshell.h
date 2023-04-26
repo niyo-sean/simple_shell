@@ -111,7 +111,7 @@ typedef struct builtin
 int _putchar(char c);
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
-char *_strchar(char *, char);
+char *_strchr(char *, char);
 
 /* declare for_shell_loops.c */
 int hsh(info_t *, char **);
@@ -128,8 +128,8 @@ char *find_path(info_t *, char *, char *);
 int lphsh(char **);
 
 /* declare for_error.c */
-void _puts(char *);
-/*void _putchar(char);*/
+void _eputs(char *);
+int  _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
@@ -150,7 +150,7 @@ char **strtow(char *, char *);
 char **strtow02(char *, char);
 
 /* declare for_lloc.c */
-char *_memst(char *, char, unsigned int);
+char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
@@ -176,7 +176,7 @@ int _mycd(info_t *);
 int _myhelp(info_t *);
 
 /*declare for_bltn01.c */
-int _myhstry(info_t *);
+int _myhistory(info_t *);
 int _myalias(info_t *);
 
 /* declare for gtln.c */
@@ -197,14 +197,14 @@ int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
 
 /* declera for_gtnv.c */
-char **get_envirin(info_t *);
+char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 /* declare for_hstry.c */
 char *get_history_file(info_t *info);
 int write_history(info_t *info);
-int readd_history(info_t *info);
+int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
 

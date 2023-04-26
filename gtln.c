@@ -119,7 +119,7 @@ int _getline(info_t *info, char **pt, size_t *leng)
 	x = read_buf(info, buffer, &d);
 	if (x == -1 || (x == 0 && d == 0))
 		return (-1);
-	b = _strchar(buffer + a, '\n');
+	b = _strchr(buffer + a, '\n');
 	q = b ? 1 + (unsigned int)(b - buffer) : d;
 	new_f = _realloc(f, c, c ? c + q : q + 1);
 	if (!new_f)

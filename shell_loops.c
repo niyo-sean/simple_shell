@@ -52,7 +52,7 @@ int find_builtin(info_t *info)
 		{"exit", _myexit},
 		{"env", _myenv},
 		{"help", _myhelp},
-		{"history", _myhstry},
+		{"history", _myhistory},
 		{"setenv", _mysetenv},
 		{"unsetenv", _mysetenv},
 		{"cd", _mycd},
@@ -127,7 +127,7 @@ void fork_cmd(info_t *info)
 	}
 	if (chld == 0)
 	{
-		if (execve(info->path, info->argv, get_envirin(info)) == -1)
+		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{
 			free_info(info, 1);
 			if (errno == EACCES)

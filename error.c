@@ -1,11 +1,11 @@
 #include "myshell.h"
 /**
- * _puts - prints an inputs stringsfrom keyboard
+ * _eputs - prints an inputs stringsfrom keyboard
  * @strg: the string being printed
  *
  * Return: void
  */
-void _puts(char *strg)
+void _eputs(char *strg)
 {
 	int a = 0;
 
@@ -13,16 +13,16 @@ void _puts(char *strg)
 		return;
 	while (strg[a] != '\0')
 	{
-		_putchar(strg[a]);
+		_eputchar(strg[a]);
 		a++;
 	}
 }
 /**
- *_putchar - writes the character c to sterr
+ *_eputchar - writes the character c to sterr
  * @h: this the character to be printed
  * Return: 1 on success
  */
-int _putchar(char h)
+int _eputchar(char h)
 {
 	static int a;
 	static char buffer[WRITE_BUFFER_SIZE];
