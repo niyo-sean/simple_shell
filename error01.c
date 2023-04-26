@@ -42,31 +42,31 @@ void print_error(info_t *info, char *se)
 	_puts(se);
 }
 /**
- * print_dc -function prints a decimal (integer)
+ * print_d -function prints a decimal (integer)
  * @input: is the input
  * @fd: is the filedestriptor
  * Return: number
  */
-int print_dc(int input, int fd)
+int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
 	int a, count = 0;
-	unsigned int _abc_, current;
+	unsigned int _abs_, current;
 
 	if (fd == STDERR_FILENO)
 		__putchar = _putchar;
 	if (input < 0)
 	{
-		_abc_ = -input;
+		_abs_ = -input;
 		__putchar('-');
 		count++;
 	}
 	else
-		_abc_ = input;
-	current = _abc_;
+		_abs_ = input;
+	current = _abs_;
 	for (a = 1000000000; a > 1; a /= 10)
 	{
-		if (_abc_ / a)
+		if (_abs_ / a)
 		{
 			__putchar('0' + current / a);
 			count++;

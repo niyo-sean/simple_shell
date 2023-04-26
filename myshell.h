@@ -83,7 +83,6 @@ typedef struct passinfo
 	list_t *env;
 	list_t *history;
 	list_t *alias;
-/*	list_t *history;*/
 	char **environ;
 	int env_changed;
 	int status;
