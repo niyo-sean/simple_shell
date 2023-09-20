@@ -6,10 +6,9 @@
  */
 void exec_command(const char *command)
 {
-	char *args[130];
-	int arg_count = 0;
 	pid_t child_pid = fork();
-	char *token = strtok((char *)command, " ");
+	/* to prevent my execve pass arguments */
+	char *args[2];
 
 	if (child_pid == -1)
 	{
@@ -18,15 +17,9 @@ void exec_command(const char *command)
 	}
 	else if (child_pid == 0)
 	{
-		/* Child process */
-		while (token != NULL)
-		{
-			args[arg_count++] = token;
-			token = strtok(NULL, " ");
-		}
-		args[arg_count] = NULL;
-		/* Execute the command */
-		execve(args[0], args, NULL);
+		args[0] = (char *)command;
+		args[1] = NULL;
+		execve(command, args, NULL);
 		/* If execute command fails */
 		niyo_play("./shell: No such file or directory", "\033[34m\n");
 		exit(EXIT_FAILURE);
