@@ -7,8 +7,9 @@
 void exec_command(const char *command)
 {
 	pid_t child_pid = fork();
-	/* to prevent my execve pass arguments */
-	char *args[2];
+	char *args[150];
+	int arg_count = 0;
+	char *token = strtok((char *)command, " ");
 
 	if (child_pid == -1)
 	{
@@ -17,9 +18,14 @@ void exec_command(const char *command)
 	}
 	else if (child_pid == 0)
 	{
-		args[0] = (char *)command;
-		args[1] = NULL;
-		execve(command, args, NULL);
+		while (token != NULL)
+		{
+			args[arg_count++] = token;
+			token = strtok(NULL, " ");
+		}
+		args[arg_count] = NULL;
+		/* execute command and its arguments */
+		execve(args[0], args, NULL);
 		/* If execute command fails */
 		niyo_play("./shell: No such file or directory", "\033[34m\n");
 		exit(EXIT_FAILURE);
