@@ -12,11 +12,24 @@ void exec_command(const char *command)
 	char *my_path = getenv("MY_PATH");
 	char *input = strdup(command);
 	char *token = strtok(input, " ");
+	extern char **environ;
+	char **env = environ;
 
-	if (strcmp(command, "exit") == 0)
+	if (strcmp(command, "env") == 0)
+	{
+		while (*env != NULL)
+		{
+			niyo_play("%s\n", *env);
+			env++;
+		}
+		exit(EXIT_SUCCESS);
+	}
+
+	else if (strcmp(command, "exit") == 0)
 	{
 		exit(EXIT_SUCCESS);
 	}
+
 	if (child_pid == -1)
 	{
 		niyo_play("Error forking process", "\033[34m\n");
