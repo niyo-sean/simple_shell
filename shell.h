@@ -15,5 +15,6 @@ void niyo_play(const char *message, const char *color);
 void dis_prompt(void);
 void read_command(char *command, size_t size);
 void exec_command(const char *command);
+void env_to_path(const char *my_path);
 
 #endif /*My shell header  Done by niyo-sean */

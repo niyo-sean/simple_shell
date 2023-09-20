@@ -13,6 +13,7 @@ int main(void)
 		dis_prompt();
 		read_command(command, sizeof(command));
 		exec_command(command);
+		env_to_path("path/bin");
 	}
 	return (0);
 }

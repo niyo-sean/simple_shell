@@ -9,7 +9,10 @@ void exec_command(const char *command)
 	pid_t child_pid = fork();
 	char *args[150];
 	int arg_count = 0;
-	char *token = strtok((char *)command, " ");
+	char full_path[250];
+	char *my_path = getenv("MY_PATH");
+	char *input = strdup(command);
+	char *token = strtok(input, " ");
 
 	if (child_pid == -1)
 	{
@@ -24,8 +27,20 @@ void exec_command(const char *command)
 			token = strtok(NULL, " ");
 		}
 		args[arg_count] = NULL;
+		if (my_path == NULL)
+		{
+			perror("MY_PATH env variable not  set.\n");
+			exit(EXIT_FAILURE);
+		}
+		snprintf(full_path, sizeof(full_path), "%s/%s", my_path, args[0]);
+		if (access(full_path, X_OK) != 0)
+		{
+			perror("Error accesssing or executing");
+			exit(EXIT_FAILURE);
+		}
 		/* execute command and its arguments */
-		execve(args[0], args, NULL);
+		execve(full_path, args, NULL);
+		perror("Execution failed");
 		/* If execute command fails */
 		niyo_play("./shell: No such file or directory", "\033[34m\n");
 		exit(EXIT_FAILURE);
